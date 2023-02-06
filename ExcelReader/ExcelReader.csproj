@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Epplus" Version="6.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
   </ItemGroup>
 
 </Project>
