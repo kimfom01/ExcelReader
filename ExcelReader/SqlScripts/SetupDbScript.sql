@@ -10,16 +10,17 @@ BEGIN
   CREATE TABLE Products
   (
     ProductId INT,
-    ProductName NVARCHAR,
-    Supplier NVARCHAR,
+    ProductName NVARCHAR(100),
+    Supplier NVARCHAR
+(100),
     ProductCost FLOAT
   );
 END
 GO
 CREATE PROCEDURE dbo.Products_Insert
   @ProductId INT,
-  @ProductName NVARCHAR,
-  @Supplier NVARCHAR,
+  @ProductName NVARCHAR(100),
+  @Supplier NVARCHAR(100),
   @ProductCost FLOAT
 AS
 BEGIN
@@ -35,7 +36,7 @@ BEGIN
     (
       @ProductId, @ProductName,
       @Supplier, @ProductCost
-        )
+    )
 END
 GO
 CREATE PROCEDURE dbo.Products_Select
