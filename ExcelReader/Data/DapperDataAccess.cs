@@ -3,8 +3,6 @@ using Dapper;
 using ExcelReader.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using Microsoft.SqlServer.Management.Common;
-using Microsoft.SqlServer.Management.Smo;
 
 namespace ExcelReader.Data;
 
@@ -37,21 +35,6 @@ public class DapperDataAccess : IDataAccess
     {
         using IDbConnection connection = new SqlConnection(_connectionString);
 
-        await connection.ExecuteAsync("dbo.Products_Insert @ProductId @ProductName @Supplier @ProductCost", products);
-    }
-
-    public void SetupDatabase()
-    {
-        var databaseConnection = _config.GetConnectionString("DatabaseConnection");
-        var file = new FileInfo(_config.GetSection("SetupScript").Value!);
-        var script = file.OpenText().ReadToEnd();
-
-        using var connection = new SqlConnection(databaseConnection);
-
-        var serverConnection = new ServerConnection(connection);
-
-        var server = new Server(serverConnection);
-
-        server.ConnectionContext.ExecuteNonQuery(script);
+        await connection.ExecuteAsync("dbo.Products_Insert @ProductId, @ProductName, @Supplier, @ProductCost", products);
     }
 }

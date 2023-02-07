@@ -6,5 +6,4 @@ public interface IDataAccess
 {
     Task<List<Product>> GetProductsAsync();
     Task AddProducts(List<Product> products);
-    void SetupDatabase();
 }
